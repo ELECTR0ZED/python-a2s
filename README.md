@@ -1,5 +1,7 @@
 # Python A2S
 
+UPDATED TO WORK WITH 3.6 - NOT FULLY TESTED
+
 Library to query Source and GoldSource servers. Rewrite of the
 [python-valve](https://github.com/serverstf/python-valve) module.
 Supports both synchronous and asyncronous applications.
@@ -8,7 +10,7 @@ Official demo application: [Sourcequery](https://sourcequery.yepoleb.at)
 
 ## Requirements
 
-Python >=3.7, no external dependencies
+Python >=3.6, no external dependencies
 
 ## Install
 
