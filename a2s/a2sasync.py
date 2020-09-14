@@ -64,7 +64,7 @@ class A2SStreamAsync:
 
     @classmethod
     async def create(cls, address, timeout):
-        loop = asyncio.get_running_loop()
+        loop = asyncio.get_event_loop()
         transport, protocol = await loop.create_datagram_endpoint(
             lambda: A2SProtocol(), remote_addr=address)
         return cls(transport, protocol, timeout)
