@@ -13,7 +13,7 @@ setuptools.setup(
     description="Query Source and GoldSource servers for name, map, players and more.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Yepoleb/python-a2s",
+    url="https://github.com/ELECTR0ZED/python-a2s",
     packages=["a2s"],
     license="MIT License",
     classifiers=[
