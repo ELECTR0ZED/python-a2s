@@ -65,8 +65,7 @@ class A2SStreamAsync:
     @classmethod
     async def create(cls, address, timeout):
         loop = asyncio.get_event_loop()
-        transport, protocol = await loop.create_datagram_endpoint(
-            lambda: A2SProtocol(), remote_addr=address)
+        transport, protocol = await loop.create_datagram_endpoint(lambda: A2SProtocol(), remote_addr=address)
         return cls(transport, protocol, timeout)
 
     def send(self, payload):
@@ -74,10 +73,10 @@ class A2SStreamAsync:
         self.transport.sendto(packet)
 
     async def recv(self):
-        queue_task = asyncio.create_task(self.protocol.recv_queue.get())
-        error_task = asyncio.create_task(self.protocol.error_event.wait())
-        done, pending = await asyncio.wait({queue_task, error_task},
-                     timeout=self.timeout, return_when=asyncio.FIRST_COMPLETED)
+        loop = asyncio.get_event_loop()
+        queue_task = loop.create_task(self.protocol.recv_queue.get())
+        error_task = loop.create_task(self.protocol.error_event.wait())
+        done, pending = await asyncio.wait({queue_task, error_task}, timeout=self.timeout, return_when=asyncio.FIRST_COMPLETED)
 
         for task in pending: task.cancel()
         if error_task in done:
